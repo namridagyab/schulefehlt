@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SchuleFehlt.de</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="max-w-2xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-4 text-center">SchuleFehlt.de</h1>
+    <p class="mb-6 text-center">Melde ausgefallene Schulstunden transparent und anonym.</p>
+
+    <!-- Formular -->
+    <form id="reportForm" class="bg-white p-6 rounded shadow">
+      <div class="mb-4">
+        <label for="school" class="block text-sm font-medium">Schule</label>
+        <input type="text" id="school" name="school" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+      </div>
+      <div class="mb-4">
+        <label for="class" class="block text-sm font-medium">Klasse</label>
+        <input type="text" id="class" name="class" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+      </div>
+      <div class="mb-4">
+        <label for="date" class="block text-sm font-medium">Datum</label>
+        <input type="date" id="date" name="date" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+      </div>
+      <div class="mb-4">
+        <label for="hour" class="block text-sm font-medium">Stunde (z. B. 1. Stunde)</label>
+        <input type="text" id="hour" name="hour" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+      </div>
+      <div class="mb-4">
+        <label for="reason" class="block text-sm font-medium">Grund des Ausfalls</label>
+        <select id="reason" name="reason" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+          <option value="krankheit">Lehrkraft krank</option>
+          <option value="vertretung">Lehrkraft anderweitig eingesetzt</option>
+          <option value="abschlusspruefung">Abschlussprüfung</option>
+          <option value="wandertag">Wandertag</option>
+          <option value="fortbildung">Lehrerfortbildung</option>
+          <option value="film">Film / Frühstück o.ä.</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="type" class="block text-sm font-medium">Art des Ausfalls</label>
+        <select id="type" name="type" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+          <option value="komplett">Ersatzlos ausgefallen</option>
+          <option value="vertretung">Vertretung ohne Fachbezug</option>
+        </select>
+      </div>
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Meldung absenden</button>
+    </form>
+
+    <div id="confirmation" class="mt-6 hidden text-green-700 font-medium">
+      Danke, deine Meldung wurde erfasst!
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('reportForm');
+    const confirmation = document.getElementById('confirmation');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      confirmation.classList.remove('hidden');
+      form.reset();
+    });
+  </script>
+</body>
+</html>
